@@ -72,7 +72,7 @@
 
 	<!-- startup action - load the first scene -->
 	<action name="startup" autorun="onstart">
-		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[4].name); );
+		if(startscene === null OR !scene[get(startscene)], copy(startscene,scene[17].name); );
 		loadscene(get(startscene), null, MERGE);
 		if(startactions !== null, startactions() );
 	</action>
@@ -94,9 +94,8 @@
 	<layer name="spotexit" url="right-arrow.png" style="mapspot" x="1666" y="1450" zorder="1" onclick="loadscene(scene_10, null, MERGE, BLEND(1));"/>
 	<layer name="spot11" style="mapspot" x="1451" y="1193" zorder="1" onclick="loadscene(scene_11, null, MERGE, BLEND(1));"/>
 	<layer name="spot12" style="mapspot" x="1340" y="1030" zorder="1" onclick="loadscene(scene_12, null, MERGE, BLEND(1));"/>
-	
+	<layer name="spotducha" style="mapspot" x="1450" y="730" zorder="1" onclick="loadscene(scene_ducha, null, MERGE, BLEND(1));"/>
 	<layer name="spot14" style="mapspot" x="1600" y="1450" zorder="1" onclick="loadscene(scene_14, null, MERGE, BLEND(1));"/>
-	<layer name="spot15" style="mapspot" x="100" y="1218" zorder="1" onclick="loadscene(scene_15, null, MERGE, BLEND(1));"/>
 	<layer name="spot16" style="mapspot" x="100" y="1139" zorder="1" onclick="loadscene(scene_16, null, MERGE, BLEND(1));"/>
 	<layer name="spot17" style="mapspot" x="1155" y="1450" zorder="1" onclick="loadscene(scene_17, null, MERGE, BLEND(1));"/>
 	<layer name="spot18" style="mapspot" x="907" y="1779" zorder="1" onclick="loadscene(scene_18, null, MERGE, BLEND(1));"/>
@@ -129,6 +128,30 @@
 			<cube url="panos/IMG_20200602_150236.tiles/vr/pano_%s.jpg" />
 		</image>
 		<hotspot name="spot1" style="skin_hotspotstyle" ath="55.219" atv="12.064" url="upleft-hotspot.png" linkedscene="scene_02" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="-87.568" atv="34.928" linkedscene="scene_ducha" />
+
+	</scene>
+	
+	<scene name="scene_ducha" title="Ducha habitación principal" onstart="update()" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/DUCHA.tiles/thumb.jpg" lat="" lng="" heading="">
+	
+		<action name="update">
+			set(layer[radar].parent, spotducha); set(layer[radar].heading, 180); set(layer[radar].visible, true);
+			if(webvr.isenabled == false,set(layer[map].visible,"true"););
+		</action>
+
+		<view hlookat="-272.064" vlookat="15.370" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+
+		<preview url="panos/DUCHA.tiles/preview.jpg" />
+
+		<image if="!(webvr.isenabled OR device.mobilevr)">
+			<cube url="panos/DUCHA.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1152,2176" />
+		</image>
+
+		<image if="webvr.isenabled OR device.mobilevr">
+			<cube url="panos/DUCHA.tiles/vr/pano_%s.jpg" />
+		</image>
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="96.827" atv="28.876" linkedscene="scene_01" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="82.138" atv="2.399" linkedscene="scene_02" url="left-hotspot.png"/>
 
 	</scene>
 
@@ -277,33 +300,11 @@
 		<image if="webvr.isenabled OR device.mobilevr">
 			<cube url="panos/IMG_20200609_103947.tiles/vr/pano_%s.jpg" />
 		</image>
-		<hotspot name="spot1" style="skin_hotspotstyle" ath="-93.630" atv="17.861" linkedscene="scene_15" />
-		<hotspot name="spot2" style="skin_hotspotstyle" ath="170.269" atv="20.529" linkedscene="scene_21" />
+		<hotspot name="spot2" style="skin_hotspotstyle" ath="170.269" atv="20.529" linkedscene="scene_04" />
+		<hotspot name="spot1" style="skin_hotspotstyle" ath="-165.694" atv="26.795" linkedscene="scene_21" />
 
 	</scene>
 	
-	<scene name="scene_15" title="Balcón" onstart="update()" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/IMG_20200609_103714.tiles/thumb.jpg" lat="4.67904300" lng="-74.05323100" heading="0.0">
-	
-		<action name="update">
-			set(layer[radar].parent, spot15); set(layer[radar].heading, 180); set(layer[radar].visible, true);
-			if(webvr.isenabled == false,set(layer[map].visible,"true"););
-		</action>
-
-		<view hlookat="-355.609" vlookat="-16.016" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
-
-		<preview url="panos/IMG_20200609_103714.tiles/preview.jpg" />
-
-		<image if="!(webvr.isenabled OR device.mobilevr)">
-			<cube url="panos/IMG_20200609_103714.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg" multires="512,1152,2176" />
-		</image>
-
-		<image if="webvr.isenabled OR device.mobilevr">
-			<cube url="panos/IMG_20200609_103714.tiles/vr/pano_%s.jpg" />
-		</image>
-		<hotspot name="spot1" style="skin_hotspotstyle" ath="83.074" atv="12.677" linkedscene="scene_16" />
-		<hotspot name="spot2" style="skin_hotspotstyle" ath="128.693" atv="11.029" linkedscene="scene_21" />
-
-	</scene>
 	
 	<scene name="scene_18" title="Habitación auxiliar - vista puerta" onstart="update()" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/IMG_20200609_105705.tiles/thumb.jpg" lat="" lng="" heading="">
 	
@@ -459,7 +460,7 @@
 
 	</scene>
 	
-	<scene name="scene_22" title="Cocina - Parillera" onstart="update()" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/IMG_20200609_111557.tiles/thumb.jpg" lat="4.67906800" lng="-74.05296500" heading="0.0">
+	<scene name="scene_22" title="Cocina - Condimentero" onstart="update()" havevrimage.mobilevr="false" havevrimage.no-mobilevr="true" thumburl="panos/IMG_20200609_111557.tiles/thumb.jpg" lat="4.67906800" lng="-74.05296500" heading="0.0">
 	
 		<action name="update">
 			set(layer[radar].parent, spot11); set(layer[radar].heading, 30); set(layer[radar].visible, true);
