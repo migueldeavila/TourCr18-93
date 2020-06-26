@@ -579,7 +579,7 @@
 			if(webvr.isenabled == false,set(layer[map].visible,"true"););
 		</action>
 
-		<view hlookat="57.230" vlookat="16.522" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
+		<view hlookat="194.321" vlookat="14.014" fovtype="MFOV" fov="120.000" maxpixelzoom="2.0" fovmin="70" fovmax="140" limitview="auto" />
 
 		<preview url="panos/IMG_20200609_103546.tiles/preview.jpg" />
 
